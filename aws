@@ -1,0 +1,39 @@
+#!/bin/bash
+
+ 
+
+# Set FTP connection details
+HOST=34.196.128.28
+USER=upc860_s
+PASSWORD=need to get
+
+ 
+
+# Set file details
+REMOTE_FILE="oma0327.dat"
+LOCAL_DIR="/home/desktop/Manual Upload"
+
+ 
+
+# Connect to FTP server and search for file
+ftp -inv $HOST <<EOF
+user $USER $PASSWORD
+cd /local/chap/chipsstg
+ls $REMOTE_FILE
+quit
+EOF
+
+ 
+
+# Download file if it exists
+if [ -e $REMOTE_FILE ]; then
+    ftp -inv $HOST <<EOF
+    user $USER $PASSWORD
+    cd /local/chap/chipsstg
+    get $REMOTE_FILE $LOCAL_DIR/$REMOTE_FILE
+    quit
+EOF
+    echo "File downloaded successfully."
+else
+    echo "File not found on server."
+fi
