@@ -1,13 +1,12 @@
 #!/bin/bash
 
- 
+ #adding some xtra content to file
 
 # Set FTP connection details
 HOST=34.196.128.28
 USER=upc860_s
 PASSWORD=need to get
 
- 
 
 # Set file details
 REMOTE_FILE="oma0327.dat"
